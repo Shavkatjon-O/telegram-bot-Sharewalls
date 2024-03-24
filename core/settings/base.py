@@ -11,6 +11,7 @@ SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 ALLOWED_HOSTS = ["*"]
 
 DJANGO_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
