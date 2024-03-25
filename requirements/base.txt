@@ -4,3 +4,6 @@ python-environ==0.4.54
 aiogram==3.4.1
 xlsxwriter==3.1.6
 openpyxl==3.1.2
+
+loguru==0.7.2
+uvloop==0.19.0
