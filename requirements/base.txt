@@ -1,6 +1,6 @@
 django==5.0.3
 django-jazzmin==2.6.1
 python-environ==0.4.54
-aiogram==2.25.1
+aiogram==3.4.1
 xlsxwriter==3.1.6
 openpyxl==3.1.2
