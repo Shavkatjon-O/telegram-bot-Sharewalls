@@ -1,4 +1,8 @@
 from django.db import models
+from common.models import BaseModel
+
+
+################# OLD MODELS #################
 
 
 class FileMessage(models.Model):
