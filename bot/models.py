@@ -2,6 +2,36 @@ from django.db import models
 from common.models import BaseModel
 
 
+class LanguageChoices(models.TextChoices):
+    RUSSIAN = "ru", "Russian"
+    UZBEK = "uz", "Uzbek"
+
+
+class Wallpaper(BaseModel):
+    downloads_count = models.IntegerField(default=0)
+    downloads_count_unique = models.IntegerField(default=0)
+
+    auditory_language = models.CharField(max_length=2, choices=LanguageChoices.choices)
+
+
+class WallpaperImage(BaseModel):
+    wallpaper = models.ForeignKey(Wallpaper, on_delete=models.CASCADE)
+
+    file_id = models.CharField(max_length=256)
+
+
+class TelegramAdmin(BaseModel):
+    user_id = models.BigIntegerField(unique=True)
+
+
+class TelegramUser(BaseModel):
+    user_id = models.BigIntegerField(unique=True)
+
+    username = models.CharField(max_length=255, null=True, blank=True)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+
+
 ################# OLD MODELS #################
 
 
