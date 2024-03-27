@@ -45,6 +45,9 @@ services:
     command: "python main.py"
     ports:
       - 8003:8003
+    depends_on:
+      - db
+      - django
 
 volumes:
   postgres_data:
