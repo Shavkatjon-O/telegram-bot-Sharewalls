@@ -6,11 +6,14 @@ import uvloop
 from loguru import logger
 
 from bot.handlers import get_handlers_router
+from bot.middlewares import register_middlewares
 from bot.core.loader import bot, dp
 
 
 async def on_startup() -> None:
     logger.info("Bot Starting ...")
+
+    register_middlewares(dp)
 
     dp.include_router(get_handlers_router())
 
