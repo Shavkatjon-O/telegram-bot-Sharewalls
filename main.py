@@ -51,7 +51,7 @@ async def on_shutdown() -> None:
 
 
 async def main() -> None:
-    if settings.DEBUG:
+    if not settings.DEBUG:
         logger.add(
             "logs/telegram/bot.log",
             level="DEBUG",
