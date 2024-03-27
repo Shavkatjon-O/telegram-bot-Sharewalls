@@ -20,5 +20,8 @@ async def command_upload_handler(message: Message, current_user: TelegramUser, s
 
 
 @router.message(UploadStates.UPLOAD_IMAGE, F.content_type.in_([ContentType.PHOTO, ContentType.DOCUMENT]))
-async def process_upload_image(message: Message, current_user: TelegramUser, state: FSMContext) -> None:
+async def process_upload_image(
+    message: Message, album: list[Message], current_user: TelegramUser, state: FSMContext
+) -> None:
+
     await message.answer("Image received")
