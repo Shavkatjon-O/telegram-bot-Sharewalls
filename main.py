@@ -1,3 +1,7 @@
+import django
+
+django.setup()
+
 import uvloop
 from loguru import logger
 
