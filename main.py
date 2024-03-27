@@ -5,6 +5,8 @@ django.setup()
 import uvloop
 from loguru import logger
 
+from django.conf import settings
+
 from bot.handlers import get_handlers_router
 from bot.middlewares import register_middlewares
 from bot.core.loader import bot, dp
@@ -49,13 +51,14 @@ async def on_shutdown() -> None:
 
 
 async def main() -> None:
-    logger.add(
-        "logs/telegram/bot.log",
-        level="DEBUG",
-        format="{time} | {level} | {module}:{function}:{line} | {message}",
-        rotation="100 KB",
-        compression="zip",
-    )
+    if settings.DEBUG:
+        logger.add(
+            "logs/telegram/bot.log",
+            level="DEBUG",
+            format="{time} | {level} | {module}:{function}:{line} | {message}",
+            rotation="100 KB",
+            compression="zip",
+        )
 
     dp.startup.register(on_startup)
     dp.shutdown.register(on_shutdown)
