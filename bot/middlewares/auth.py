@@ -7,6 +7,8 @@ from asgiref.sync import sync_to_async
 
 from bot.models import TelegramUser
 
+from loguru import logger
+
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
@@ -38,7 +40,7 @@ class AuthMiddleware(BaseMiddleware):
                 first_name=user.first_name,
                 last_name=user.last_name,
             )
-            logger.info(f"New User - {current_user}")
+            logger.info(f"New User - {current_user.user_id} - {current_user.username}")
 
         data["current_user"] = current_user
         return await handler(event, data)
