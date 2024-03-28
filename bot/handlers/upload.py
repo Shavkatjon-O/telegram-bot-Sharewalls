@@ -39,7 +39,7 @@ async def upload_command_handler(message: Message, current_user: TelegramUser, s
     F.content_type == ContentType.DOCUMENT or F.content_type == ContentType.PHOTO,
     F.media_group_id,
 )
-async def process_upload_image(
+async def process_upload_image_group(
     message: Message, album_message: list[Message], current_user: TelegramUser, state: FSMContext
 ):
     media_group = []
