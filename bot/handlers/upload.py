@@ -9,6 +9,9 @@ from bot.states import UploadStates
 from bot.models import TelegramUser
 
 
+router = Router(name="upload")
+
+
 """
 
 1. User sends /upload command
@@ -22,9 +25,6 @@ from bot.models import TelegramUser
 9. Bot saves images to database
 
 """
-
-
-router = Router(name="upload")
 
 
 @router.message(Command("upload"), AdminFilter())
