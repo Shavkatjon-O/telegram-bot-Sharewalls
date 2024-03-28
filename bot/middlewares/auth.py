@@ -4,7 +4,6 @@ from aiogram import BaseMiddleware
 from aiogram.types import Message
 
 from asgiref.sync import sync_to_async
-
 from bot.models import TelegramUser
 
 from loguru import logger
