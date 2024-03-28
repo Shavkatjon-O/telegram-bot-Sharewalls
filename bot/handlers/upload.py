@@ -26,7 +26,7 @@ async def upload_command_handler(message: Message, current_user: TelegramUser, s
 async def process_upload_image(
     message: Message, media_events: list[Message], current_user: TelegramUser, state: FSMContext
 ):
-    """Handler for processing image for upload that is sent as MediaGroup, Document, or Photo"""
+    """Handler for processing upload image that is sent as MediaGroup, Document, or Photo"""
 
     media_group = []
     for _message in media_events:
