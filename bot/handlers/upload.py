@@ -46,6 +46,6 @@ async def process_upload_image_group(
     F.media_group_id.is_(None),
 )
 async def process_upload_image(message: Message, current_user: TelegramUser, state: FSMContext):
-    """Handler for processing image for upload that is send as a single document or photo."""
+    """Handler for processing image for upload that is send as a single Document or Photo."""
 
     await message.answer("Image is received!")
