@@ -6,7 +6,7 @@ from aiogram.enums import ContentType
 
 from bot.models import TelegramUser
 from bot.filters.admin import AdminFilter
-from bot.keyboards.reply.upload import confirm_upload
+from bot.keyboards import inline, reply
 from bot.states import UploadStates
 
 
@@ -26,6 +26,8 @@ async def process_upload_image(
 ) -> None:
     """Handler for processing upload image that is sent as MediaGroup, Document, or Photo"""
 
+    await state.set_state(UploadStates.CONFIRMATION)
+
     media_group = []
     for _message in media_events:
         if _message.photo:
@@ -34,3 +36,11 @@ async def process_upload_image(
             media_group.append(InputMediaDocument(media=_message.document.file_id))
 
     await message.answer_media_group(media_group)
+    await message.answer("Saved ✅", reply_markup=reply.confirm_upload)
+
+
+@router.message(UploadStates.CONFIRMATION, F.text == reply.ConfirmUploadChoices.UPLOAD_IMAGE)
+async def upload_image_handler(message: Message, current_user: TelegramUser, state: FSMContext) -> None:
+
+    await state.set_state(UploadStates.UPLOAD_IMAGE)
+    await message.answer("Send an image.")
