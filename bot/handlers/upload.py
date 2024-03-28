@@ -1,6 +1,6 @@
 from aiogram import Router, F
 from aiogram.filters import Command
-from aiogram.types import Message, InputMediaPhoto, InputMediaDocument
+from aiogram.types import Message, InputMediaDocument, InputMediaPhoto
 from aiogram.fsm.context import FSMContext
 from aiogram.enums import ContentType
 
@@ -28,7 +28,26 @@ router = Router(name="upload")
 
 
 @router.message(Command("upload"), AdminFilter())
-async def upload_command(message: Message, current_user: TelegramUser, state: FSMContext):
+async def upload_command_handler(message: Message, current_user: TelegramUser, state: FSMContext):
 
     await state.set_state(UploadStates.UPLOAD_IMAGE)
     await message.answer("Send an image.")
+
+
+@router.message(
+    UploadStates.UPLOAD_IMAGE,
+    F.content_type == ContentType.DOCUMENT or F.content_type == ContentType.PHOTO,
+    F.media_group_id,
+)
+async def process_upload_image(
+    message: Message, album_message: list[Message], current_user: TelegramUser, state: FSMContext
+):
+    media_group = []
+    for _message in album_message:
+        if _message.photo:
+            media_group.append(InputMediaPhoto(media=_message.photo[-1].file_id))
+        else:
+            media_group.append(InputMediaDocument(media=_message.document.file_id))
+
+    await message.answer_media_group(media_group)
+    await message.answer("Do you want to add another one or finish?")

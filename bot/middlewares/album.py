@@ -28,7 +28,7 @@ class AlbumMiddleware(BaseMiddleware):
             await asyncio.sleep(self.latency)
 
             data["_is_last"] = True
-            data["album"] = self.album_data[message.media_group_id]
+            data["album_message"] = self.album_data[message.media_group_id]
 
             await handler(message, data)
 
