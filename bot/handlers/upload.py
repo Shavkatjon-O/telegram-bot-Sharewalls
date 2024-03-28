@@ -25,3 +25,10 @@ from bot.models import TelegramUser
 
 
 router = Router(name="upload")
+
+
+@router.message(Command("upload"), AdminFilter())
+async def upload_command(message: Message, current_user: TelegramUser, state: FSMContext):
+
+    await state.set_state(UploadStates.UPLOAD_IMAGE)
+    await message.answer("Send an image.")
