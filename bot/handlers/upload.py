@@ -22,21 +22,14 @@ async def upload_command_handler(message: Message, current_user: TelegramUser, s
 
 @router.message(
     UploadStates.UPLOAD_IMAGE,
-    F.content_type == ContentType.DOCUMENT or F.content_type == ContentType.PHOTO,
-    F.media_group_id.is_(None),
-)
-async def process_upload_image(message: Message, current_user: TelegramUser, state: FSMContext):
-    await message.answer("Image is received!")
-
-
-@router.message(
-    UploadStates.UPLOAD_IMAGE,
-    F.content_type == ContentType.DOCUMENT or F.content_type == ContentType.PHOTO,
+    F.content_type.in_([ContentType.DOCUMENT, ContentType.PHOTO]),
     F.media_group_id,
 )
 async def process_upload_image_group(
     message: Message, album_message: list[Message], current_user: TelegramUser, state: FSMContext
 ):
+    """Handler for processing image for upload that is sent as a MediaGroup."""
+
     media_group = []
     for _message in album_message:
         if _message.photo:
@@ -45,3 +38,14 @@ async def process_upload_image_group(
             media_group.append(InputMediaDocument(media=_message.document.file_id))
 
     await message.answer_media_group(media_group)
+
+
+@router.message(
+    UploadStates.UPLOAD_IMAGE,
+    F.content_type.in_([ContentType.DOCUMENT, ContentType.PHOTO]),
+    F.media_group_id.is_(None),
+)
+async def process_upload_image(message: Message, current_user: TelegramUser, state: FSMContext):
+    """Handler for processing image for upload that is send as a single document or photo."""
+
+    await message.answer("Image is received!")
