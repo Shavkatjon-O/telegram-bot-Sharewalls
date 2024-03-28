@@ -14,18 +14,16 @@ router = Router(name="upload")
 
 
 @router.message(Command("upload"), AdminFilter())
-async def upload_command_handler(message: Message, current_user: TelegramUser, state: FSMContext):
+async def upload_command_handler(message: Message, current_user: TelegramUser, state: FSMContext) -> None:
 
     await state.set_state(UploadStates.UPLOAD_IMAGE)
     await message.answer("Send an image.")
 
 
-@router.message(
-    UploadStates.UPLOAD_IMAGE, F.content_type.in_([ContentType.DOCUMENT, ContentType.PHOTO])
-)
+@router.message(UploadStates.UPLOAD_IMAGE, F.content_type.in_([ContentType.DOCUMENT, ContentType.PHOTO]))
 async def process_upload_image(
     message: Message, media_events: list[Message], current_user: TelegramUser, state: FSMContext
-):
+) -> None:
     """Handler for processing upload image that is sent as MediaGroup, Document, or Photo"""
 
     media_group = []
