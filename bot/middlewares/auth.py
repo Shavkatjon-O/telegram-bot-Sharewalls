@@ -4,6 +4,7 @@ from aiogram import BaseMiddleware
 from aiogram.types import Message
 
 from asgiref.sync import sync_to_async
+from django.utils.translation import activate
 from bot.models import TelegramUser
 
 from loguru import logger
@@ -26,6 +27,10 @@ class AuthMiddleware(BaseMiddleware):
 
         try:
             tg_user = await sync_to_async(TelegramUser.objects.get)(user_id=user.id)
+
+            if tg_user.language_code:
+                activate(tg_user.language_code)
+
         except TelegramUser.DoesNotExist:
             tg_user = await sync_to_async(TelegramUser.objects.create)(
                 user_id=user.id,
