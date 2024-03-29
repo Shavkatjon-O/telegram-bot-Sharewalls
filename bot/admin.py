@@ -1,10 +1,6 @@
 from django.contrib import admin
-from . import models
+from bot import models
 
-admin.site.register(models.FileMessage)
-admin.site.register(models.MediaGroupItem)
-admin.site.register(models.Admin)
-admin.site.register(models.TGusers)
 
 admin.site.register(models.Wallpaper)
 admin.site.register(models.WallpaperImage)
