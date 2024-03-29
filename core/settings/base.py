@@ -84,7 +84,7 @@ LANGUAGES = (
     ("ru", "Russian"),
     ("uz", "Uzbek"),
 )
-LOCALE_PATHS = (BASE_DIR / "locale",)
+LOCALE_PATHS = (BASE_DIR / "locales",)
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
