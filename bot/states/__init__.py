@@ -1,3 +1,2 @@
-from .upload import UploadStates
-
-__all__ = ["UploadStates"]
+from bot.states.admin import *
+from bot.states.users import *
