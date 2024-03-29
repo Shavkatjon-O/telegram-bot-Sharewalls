@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 
 from bot.models import TelegramUser
 from bot.filters.admin import AdminFilter
-from bot.states.upload import UploadStates
+from bot.states.admin import UploadStates
 from bot.keyboards import inline, reply
 
 

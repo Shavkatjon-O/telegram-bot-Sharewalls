@@ -9,6 +9,6 @@ router = Router(name="start")
 
 
 @router.message(CommandStart())
-async def command_start_handler(message: Message, current_user: TelegramUser) -> None:
+async def command_start_handler(message: Message, tg_user: TelegramUser) -> None:
 
-    await message.answer(f"Hello, {current_user.first_name}!")
+    await message.answer(f"Hello, {tg_user.first_name}!")
