@@ -40,7 +40,7 @@ class TelegramUser(BaseModel):
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
 
-    language = models.CharField(
+    language_code = models.CharField(
         max_length=2, choices=LanguageChoices.choices, null=True, blank=True
     )
 
