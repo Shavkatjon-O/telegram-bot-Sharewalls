@@ -29,6 +29,7 @@ INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -77,7 +78,7 @@ USE_L10N = True
 USE_I18N = True
 USE_TZ = True
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 LANGUAGES = (
     ("en", "English"),
     ("ru", "Russian"),
