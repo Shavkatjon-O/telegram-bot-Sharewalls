@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.filters import Command
 
-from django.utils.translation import gettext as _
+from django.utils.translation import activate, gettext as _
 
 from asgiref.sync import sync_to_async
 
@@ -24,5 +24,7 @@ async def language_handler(message: Message, tg_user: TelegramUser) -> None:
 
     tg_user.language_code = message.text
     await sync_to_async(tg_user.save)()
+
+    activate(tg_user.language_code)
 
     await message.answer(_("Language has been changed to {language}").format(language=message.text))
