@@ -9,8 +9,13 @@ class ConfirmUploadChoices:
 
 confirm_upload = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text=ConfirmUploadChoices.UPLOAD_IMAGE)],
-        [KeyboardButton(text=ConfirmUploadChoices.FINISH), KeyboardButton(text=ConfirmUploadChoices.CANCEL)],
+        [
+            KeyboardButton(text=ConfirmUploadChoices.ADD_IMAGE),
+        ],
+        [
+            KeyboardButton(text=ConfirmUploadChoices.FINISH),
+            KeyboardButton(text=ConfirmUploadChoices.CANCEL),
+        ],
     ],
     resize_keyboard=True,
     one_time_keyboard=True,
