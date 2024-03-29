@@ -2,7 +2,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 
 class ConfirmUploadChoices:
-    UPLOAD_IMAGE = "Отправить фото"
+    ADD_IMAGE = "Отправить фото"
     FINISH = "✅ Загрузить"
     CANCEL = "❌ Отмена"
 
