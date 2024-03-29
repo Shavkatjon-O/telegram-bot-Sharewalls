@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-29 21:05+0500\n"
-"PO-Revision-Date: 2024-03-29 21:09+0500\n"
+"POT-Creation-Date: 2024-03-29 21:17+0500\n"
+"PO-Revision-Date: 2024-03-29 21:19+0500\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,6 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: bot/handlers/language.py:18
+msgid "Choose your language"
+msgstr "Выберите ваш язык"
+
+#: bot/handlers/language.py:27
+#, python-brace-format
+msgid "Language has been changed to {language}"
+msgstr "Язык изменился на {language}"
 
 #: bot/handlers/start.py:16
 #, python-brace-format
