@@ -40,7 +40,17 @@ async def process_upload_image(
 
 
 @router.message(UploadStates.CONFIRMATION, F.text == reply.ConfirmUploadChoices.UPLOAD_IMAGE)
-async def upload_image_handler(message: Message, current_user: TelegramUser, state: FSMContext) -> None:
+async def process_confirm_upload(message: Message, current_user: TelegramUser, state: FSMContext) -> None:
 
     await state.set_state(UploadStates.UPLOAD_IMAGE)
     await message.answer("Send an image.")
+
+
+@router.message(UploadStates.CONFIRMATION, F.text == reply.ConfirmUploadChoices.FINISH)
+async def process_finish_upload(message: Message, current_user: TelegramUser, state: FSMContext) -> None:
+    pass
+
+
+@router.message(UploadStates.CONFIRMATION, F.text == reply.ConfirmUploadChoices.CANCEL)
+async def process_cancel_upload(message: Message, current_user: TelegramUser, state: FSMContext) -> None:
+    pass
