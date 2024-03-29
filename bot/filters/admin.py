@@ -13,5 +13,7 @@ class AdminFilter(BaseFilter):
         if not message.from_user:
             return False
 
-        is_admin = await sync_to_async(TelegramAdmin.objects.filter(user_id=message.from_user.id).exists)()
+        is_admin = await sync_to_async(
+            TelegramAdmin.objects.filter(user_id=message.from_user.id).exists
+        )()
         return is_admin
