@@ -25,15 +25,15 @@ class AuthMiddleware(BaseMiddleware):
             return await handler(message, data)
 
         try:
-            current_user = await sync_to_async(TelegramUser.objects.get)(user_id=user.id)
+            tg_user = await sync_to_async(TelegramUser.objects.get)(user_id=user.id)
         except TelegramUser.DoesNotExist:
-            current_user = await sync_to_async(TelegramUser.objects.create)(
+            tg_user = await sync_to_async(TelegramUser.objects.create)(
                 user_id=user.id,
                 username=user.username,
                 first_name=user.first_name,
                 last_name=user.last_name,
             )
-            logger.info(f"New User - {current_user.user_id} - {current_user.username}")
+            logger.info(f"New User - {tg_user.user_id} - {tg_user.username}")
 
-        data["current_user"] = current_user
+        data["tg_user"] = tg_user
         return await handler(message, data)
