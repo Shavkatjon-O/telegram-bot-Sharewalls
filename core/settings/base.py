@@ -84,7 +84,7 @@ LANGUAGES = (
     ("ru", "Russian"),
     ("uz", "Uzbek"),
 )
-LOCALE_PATHS = (BASE_DIR / "locales",)
+LOCALE_PATHS = (BASE_DIR / "locales/django/",)
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
